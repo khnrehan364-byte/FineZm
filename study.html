@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Study Tools - FineZ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:Poppins,sans-serif;color:white;}
+
+#vanta-bg{
+position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+}
+
+/* HEADER */
+header{
+text-align:center;padding:30px 20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+header h1{margin:0;font-size:36px;}
+.tagline{margin-top:6px;font-weight:600;}
+
+nav{margin-top:15px;}
+nav a{
+margin:0 15px;
+color:white;
+text-decoration:none;
+font-weight:500;
+}
+nav a.active{
+border-bottom:2px solid #ff4f81;
+padding-bottom:3px;
+}
+
+/* SEARCH */
+.search-bar{text-align:center;margin:30px;}
+.search-bar input{
+width:60%;padding:12px;
+border-radius:30px;border:none;
+background:rgba(255,255,255,0.1);
+color:white;
+}
+
+/* CARDS */
+.container{
+column-count:4;
+column-gap:20px;
+padding:40px;
+}
+
+.card{
+break-inside:avoid;
+background:rgba(255,255,255,0.08);
+border-radius:16px;
+overflow:hidden;
+margin-bottom:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{transform:scale(1.03);}
+
+.card img{width:100%;}
+.card h2{font-size:18px;padding:10px;margin:0;}
+.card p{font-size:14px;padding:0 10px 10px;color:#ddd;}
+
+/* BUTTONS */
+.card-buttons{display:flex;gap:5px;padding:10px;}
+button{
+border:none;padding:7px 12px;border-radius:20px;
+cursor:pointer;color:white;
+}
+.buy{background:#28a745}
+.save{background:#e60023}
+.share{background:#3b5998}
+
+/* POPUP */
+.popup{
+position:fixed;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.8);
+display:none;justify-content:center;align-items:center;
+}
+
+.popup-content{
+background:rgba(255,255,255,0.1);
+padding:20px;border-radius:16px;
+width:90%;max-width:500px;
+}
+
+/* MOBILE */
+@media(max-width:1000px){.container{column-count:2;}}
+@media(max-width:600px){.container{column-count:1;}}
+</style>
+</head>
+
+<body>
+
+<div id="vanta-bg"></div>
+
+<header>
+<h1>FineZ</h1>
+<p class="tagline">Study Tools 📘</p>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="ai-money.html">AI Money</a>
+<a href="side-hustles.html">Side Hustles</a>
+<a href="study.html" class="active">Study Tools</a>
+<a href="fitness.html">Fitness</a>
+<a href="home.html">Home Design</a>
+<a href="about.html">About</a>
+</nav>
+</header>
+
+<!-- SEARCH -->
+<div class="search-bar">
+<input id="searchInput" placeholder="Search study tools...">
+</div>
+
+<!-- CARDS -->
+<div class="container" id="cards">
+
+<div class="card" onclick="openPopup(this)">
+<img src="https://picsum.photos/400/300?21">
+<h2>AI Study Assistant</h2>
+<p>Learn faster using AI-powered notes & summaries.</p>
+<div class="card-buttons">
+<button onclick="event.stopPropagation();like(this)">❤️ 0</button>
+<button class="save">Save</button>
+<button class="share">Share</button>
+<a href="https://www.notion.so"><button class="buy">View Tool 🔥</button></a>
+</div>
+</div>
+
+<div class="card" onclick="openPopup(this)">
+<img src="https://picsum.photos/400/300?22">
+<h2>Flashcards App</h2>
+<p>Memorize faster with smart repetition.</p>
+<div class="card-buttons">
+<button onclick="event.stopPropagation();like(this)">❤️ 0</button>
+<button class="save">Save</button>
+<button class="share">Share</button>
+<a href="https://quizlet.com"><button class="buy">View App 🔥</button></a>
+</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-content" id="popupContent"></div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
+
+<script>
+
+// BACKGROUND
+VANTA.FOG({
+el:"#vanta-bg",
+highlightColor:0xff4f81,
+midtoneColor:0x667eea,
+lowlightColor:0x764ba2
+})
+
+// SEARCH
+document.getElementById("searchInput").addEventListener("keyup",function(){
+let filter=this.value.toLowerCase()
+document.querySelectorAll(".card").forEach(card=>{
+let text=card.innerText.toLowerCase()
+card.style.display=text.includes(filter)?"block":"none"
+})
+})
+
+// LIKE
+function like(btn){
+let count=parseInt(btn.innerText.split(" ")[1])
+count++
+btn.innerText="❤️ "+count
+}
+
+// POPUP
+function openPopup(card){
+
+let title = card.querySelector("h2").innerText
+let img = card.querySelector("img").src
+let desc = card.querySelector("p").innerText
+let link = card.querySelector("a").href
+
+document.getElementById("popupContent").innerHTML = `
+<img src="${img}" style="width:100%;border-radius:12px;margin-bottom:10px;">
+<h2>${title}</h2>
+<p>${desc}</p>
+
+<p>📘 Study Boost | 🔥 Popular | 🎯 Focus Improvement</p>
+
+<ul>
+<li>✔ Better Memory</li>
+<li>✔ Smart Learning</li>
+<li>✔ Exam Ready</li>
+</ul>
+
+<button class="buy" onclick="window.open('${link}')">
+Start Learning 🚀
+</button>
+
+<br><br>
+<button onclick="closePopup()">Close</button>
+`
+
+document.getElementById("popup").style.display="flex"
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none"
+}
+
+</script>
+
+</body>
+</html>

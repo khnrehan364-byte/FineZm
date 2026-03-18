@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About - FineZ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:Poppins,sans-serif;color:white;}
+
+#vanta-bg{
+position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+}
+
+/* HEADER */
+header{
+text-align:center;padding:30px 20px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+header h1{margin:0;font-size:36px;}
+.tagline{margin-top:6px;font-weight:600;}
+
+nav{margin-top:15px;}
+nav a{
+margin:0 15px;
+color:white;
+text-decoration:none;
+font-weight:500;
+}
+nav a.active{
+border-bottom:2px solid #ff4f81;
+padding-bottom:3px;
+}
+
+/* ABOUT BOX */
+.about-container{
+max-width:800px;
+margin:60px auto;
+padding:30px;
+background:rgba(255,255,255,0.08);
+border-radius:16px;
+backdrop-filter:blur(20px);
+line-height:1.8;
+}
+
+.about-container h2{
+margin-top:0;
+}
+
+.about-container p{
+color:#ddd;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+margin-top:50px;
+background:rgba(255,255,255,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<div id="vanta-bg"></div>
+
+<header>
+<h1>FineZ</h1>
+<p class="tagline">About Us</p>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="ai-money.html">AI Money</a>
+<a href="side-hustles.html">Side Hustles</a>
+<a href="study.html">Study Tools</a>
+<a href="fitness.html">Fitness</a>
+<a href="home.html">Home Design</a>
+<a href="about.html" class="active">About</a>
+</nav>
+</header>
+
+<!-- ABOUT CONTENT -->
+<div class="about-container">
+
+<h2>What is FineZ?</h2>
+<p>
+FineZ is a modern discovery platform where you can explore tools, products, and ideas to improve your life.
+From earning money online to boosting productivity and staying fit — everything is organized in one place.
+</p>
+
+<h2>Our Mission</h2>
+<p>
+Our goal is to help people discover powerful tools and opportunities easily.  
+We simplify decision-making by showing useful products with clear details and direct access links.
+</p>
+
+<h2>How It Works</h2>
+<p>
+Browse categories like AI Money, Side Hustles, Study Tools, and Fitness.  
+Click on any card to see detailed information and take action instantly.
+</p>
+
+<h2>Affiliate Disclaimer</h2>
+<p>
+Some links on FineZ are affiliate links. This means we may earn a commission when you purchase through them — at no extra cost to you.
+</p>
+
+</div>
+
+<footer>
+<p>© 2026 FineZ. All rights reserved.</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.fog.min.js"></script>
+
+<script>
+
+// BACKGROUND
+VANTA.FOG({
+el:"#vanta-bg",
+highlightColor:0xff4f81,
+midtoneColor:0x667eea,
+lowlightColor:0x764ba2
+})
+
+</script>
+
+</body>
+</html>
